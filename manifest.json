@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "Web Block",
+  "version": "1.0",
+  "description": "Block websites from being accessed",
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
