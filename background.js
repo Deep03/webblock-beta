@@ -1,7 +1,27 @@
-var blockedSites = [];
+// var blockedSites = [];
+
+const blockedSites = JSON.parse(localStorage.getItem('blockedSites') || '[]');
+
 const siteInput = document.querySelector('.site-title');
 const addButton = document.querySelector('.add-btn');
-const addbox = document.querySelector('.add-site');
+var addbox = document.querySelector('.add-site');
+let index = 0;
+
+
+const addButton_e = document.getElementById("add-btn-id");
+const removeButton = document.querySelector('remove-btn');
+
+if (addButton_e) {
+  addButton_e.addEventListener('click', () => {
+    addSite();
+  });
+}
+
+if (removeButton) {
+  addButton.addEventListener('click', () => {
+    removeSite();
+  });
+}
 
 // DO NOT EDIT THIS CODE BLOCK
 if (chrome.webRequest) {
@@ -21,10 +41,27 @@ chrome.webRequest.onBeforeRequest.addListener(
 }
 // END OF DONOT EDIT
 
+
+
+function showAllSites() {
+  for (let i = 0; i < blockedSites.length; i++) {
+    siteName = blockedSites[i];
+    let divEl = `<div id="site-block">
+    <text id="site-text"> ${siteName}</text> 
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>a
+      </label>
+    </div>`;
+  addbox.insertAdjacentHTML('afterend', divEl);
+  }
+}
+showAllSites();
 // purpose is to reduce duplication of values
 function checkSiteName(siteName) {
   for (let i = 0; i < blockedSites.length; i++) {
     if (blockedSites[i] === siteName) {
+      index = i;
       return true;
     }
   }
@@ -41,20 +78,6 @@ function showSite(site) {
     </div>`;
   addbox.insertAdjacentHTML('afterend', divEl);
 
-}
-
-function showAllSites() {
-  for (let i = 0; i < blockedSites.length; i++) {
-    siteName = blockedSites[i];
-    let divEl = `<div id="site-block">
-    <text id="site-text"> ${siteName}</text> 
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>a
-      </label>
-    </div>`;
-  addbox.insertAdjacentHTML('afterend', divEl);
-  }
 }
 
 // purpose is to add site to list of blocked sites
@@ -74,6 +97,7 @@ function addSite() {
   else {
     window.alert("Site already exits!")
   }
+  localStorage.setItem('blockedSites', JSON.stringify(blockedSites));
 }
 
 
@@ -81,8 +105,18 @@ function addSite() {
 function removeSite () {
   siteName = document.querySelector('.site-title').value;
   document.querySelector('.site-title').value = '';
-  if (checkSiteName(siteName) == true) {
-    blockedSites.pop(siteName);
+  if (blockedSites.length == 0) {
+    window.alert("Site does not exist");
+    return;
   }
+  if (checkSiteName(siteName) == true) {
+    blockedSites.splice(index, 1);
+  }
+  else {
+    window.alert("Site does not exist");
+    return;
+  }
+  localStorage.setItem('blockedSites', JSON.stringify(blockedSites));
+  location.reload();
 }
 

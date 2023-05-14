@@ -6,10 +6,21 @@
   "background": {
     "scripts": ["background.js"]
   },
+  "icons": {
+    "16": "icons/icons8-block-16.png",
+    "48": "icons/icons8-block-48.png",
+    "128": "icons/icons8-block-128.png"
+  },
+  "browser_action": {
+    "default_icon": "icons/icons8-block-128.png",
+    "default_title": "WebBlock",
+    "default_popup": "index.html"
+  },
   "permissions": [
+    "storage",
     "webRequest",
     "webRequestBlocking",
     "<all_urls>"
   ],
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval' 'my-bt2-nonce' 'my-bt1-nonce' 'my-script-nonce'; object-src 'self'"
 }

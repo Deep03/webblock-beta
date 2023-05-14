@@ -5,10 +5,13 @@ body {
     background-color: #fbfbfb;
   }
 
+
+
+
 /* style for add-site */
 .add-btn {
     position: relative;
-    left: 10px;
+    left: 5px;
     width: 100px;
     height: 34px;
     background-color:rgba(250, 247, 247, 0.981);
@@ -17,7 +20,7 @@ body {
 
 .site-title {
     position: relative;
-    left: 10px;
+    left: 0px;
     width: 100px;
     height: 28px;
     background-color:rgb(255, 255, 255);
@@ -41,9 +44,8 @@ body {
     font-weight: bold;
     color: red;
 }
-/* 
+
 #site-block {
-    position: absolute;
     display: flex;
     width: 304px;
     height: 50px;
@@ -52,7 +54,7 @@ body {
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 10px;
-} */
+}
 
 
   /* The switch - the box around the slider */
