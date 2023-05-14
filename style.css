@@ -45,7 +45,7 @@ body {
     color: red;
 }
 
-#site-block {
+.site-block {
     display: flex;
     width: 304px;
     height: 50px;
