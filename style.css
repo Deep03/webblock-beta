@@ -2,11 +2,13 @@ body {
     position: relative;
     width: 400px;
     height: 600px;
-    background-color: #fbfbfb;
+    background-color: #ff7700;
   }
 
 
-
+.add-site {
+  padding-bottom: 10px;
+}
 
 /* style for add-site */
 .add-btn {
@@ -40,6 +42,7 @@ body {
     top: 10;
     left: 0;
     padding: 10px;
+    padding-bottom: 10px;
     font-size: 24px;
     font-weight: bold;
     color: red;
@@ -50,9 +53,10 @@ body {
     width: 304px;
     height: 50px;
     align-items: bottom;
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
     padding: 10px;
+    padding-top: 10px;
     margin-bottom: 10px;
 }
 

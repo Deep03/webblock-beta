@@ -5,7 +5,12 @@ let index = 0;
 let site_counter = 0;
 const addButton = document.getElementById("add-btn-id");
 const removeButton = document.getElementById('remove-btn');
+let remove_index = 0;
+let skip_list = [];
 
+for (let i = 0; i < blockedSites.length; i++) {
+    skip_list.push(i);
+}
 
 // DO NOT EDIT THIS CODE BLOCK
 function blockSite() {
@@ -17,6 +22,9 @@ function blockSite() {
         if (details.url.includes(blockedSites[i])) {
           console.log("Blocked request:", details.url);
           return {cancel: true}; // Cancel the request
+        }
+        else {
+          console.log("task failed succesfully")
         }
       }
     },
@@ -116,7 +124,6 @@ function removeSite () {
 if (addButton) {
   addButton.addEventListener('click', () => {
     addSite();
-    console.log(blockedSites);
   });
 }
 
@@ -127,31 +134,23 @@ if (removeButton) {
 }
 
 
-
-function toggleStat(toggle) {
-  if (document.getElementById('toggle')) {
-    toggle.addEventListener('change', (event) => {
-      if (event.target.checked) {
-        return true;
-      } else {
-        return false;
-      }
-    });  
-  }
-  else {
-    return;
-  }
-}
-
 // main game loop
 for (let i = 0; i < blockedSites.length;i++) {
-    toggle_id = "toggle-" + i;
+    let toggle_id = "toggle-" + i;
     let toggle = document.getElementById(toggle_id);
-    if (toggle) {
-      state  = toggleStat(toggle);
-      if (state == false) {
-        site_text = document.getElementById("site-text");
-        console.log(site_text);
+    toggle.addEventListener('change', (event) => {
+      if (!event.target.checked) {
+        skip_list.push(i);
+      } else {
+        var index = skip_list.indexOf(i);
+        if (index > -1) {
+          skip_list.splice(index, 1);
+        }
+        // Perform actions when checkbox is unchecked
       }
-    }
+      console.log(skip_list);
+    });
 }
+
+
+blockSite()
