@@ -2,10 +2,9 @@
 const blockedSites = JSON.parse(localStorage.getItem('blockedSites') || '[]');
 var addbox = document.querySelector('.add-site');
 let index = 0;
-let index1 = 0;
+let site_counter = 0;
 const addButton = document.getElementById("add-btn-id");
 const removeButton = document.getElementById('remove-btn');
-
 
 
 // DO NOT EDIT THIS CODE BLOCK
@@ -59,11 +58,11 @@ function checkSiteName(siteName) {
 
 
 // shows a particular site
-function showSite(site, index) {
+function showSite(site, count) {
   let divEl = `<div class="site-block">
                 <text id="site-text"> ${site}</text> 
                 <label class="switch">
-                    <input type="checkbox" id="toggle-${index}">
+                    <input type="checkbox" id="toggle-${count}">
                     <span class="slider round"></span>
                 </label>
               </div>`;
@@ -83,8 +82,8 @@ function addSite() {
   }
   if (checkSiteName(siteName) == false) {
     blockedSites.push(siteName);
-    showSite(siteName, index1);
-    index1++;
+    showSite(siteName, site_counter);
+    site_counter++;
   }
   else {
     window.alert("Site already exits!")
@@ -112,6 +111,23 @@ function removeSite () {
   location.reload();
 }
 
+
+
+if (addButton) {
+  addButton.addEventListener('click', () => {
+    addSite();
+    console.log(blockedSites);
+  });
+}
+
+if (removeButton) {
+  removeButton.addEventListener('click', () => {
+    removeSite();
+  });
+}
+
+
+
 function toggleStat(toggle) {
   if (document.getElementById('toggle')) {
     toggle.addEventListener('change', (event) => {
@@ -127,22 +143,7 @@ function toggleStat(toggle) {
   }
 }
 
-
-if (addButton) {
-  addButton.addEventListener('click', () => {
-    addSite();
-  });
-}
-
-if (removeButton) {
-  removeButton.addEventListener('click', () => {
-    removeSite();
-  });
-}
-
-
 // main game loop
-
 for (let i = 0; i < blockedSites.length;i++) {
     toggle_id = "toggle-" + i;
     let toggle = document.getElementById(toggle_id);
