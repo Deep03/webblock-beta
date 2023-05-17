@@ -15,22 +15,15 @@ for (let i = 0; i < blockedSites.length; i++) {
 // DO NOT EDIT THIS CODE BLOCK
 function blockSite() {
   if (chrome.webRequest) {
-  chrome.webRequest.onBeforeRequest.addListener(
-    function(details) {
-      // Check if the request URL matches any of the blocked sites
-      for (let i = 0; i < blockedSites.length; i++) {
-        if (details.url.includes(blockedSites[i])) {
-          console.log("Blocked request:", details.url);
-          return {cancel: true}; // Cancel the request
+    chrome.webRequest.onBeforeRequest.addListener(
+      function(details) {
+        if (blockedSites.some(site => details.url.includes(site))) {
+          return { cancel: true };
         }
-        else {
-          console.log("task failed succesfully")
-        }
-      }
-    },
-    {urls: ["<all_urls>"]},
-    ["blocking"]
-  );
+      },
+      { urls: blockedSites.map(site => "*://*." + site + "/*") },
+      ["blocking"]
+    );
   }
 }
 // END OF DONOT EDIT
@@ -97,9 +90,10 @@ function addSite() {
     window.alert("Site already exits!")
   }
   localStorage.setItem('blockedSites', JSON.stringify(blockedSites));
+  blockSite();
 }
 
-
+console.log(blockedSites);
 // purpose is to make it available to remove sites
 function removeSite () {
   siteName = document.querySelector('.site-title').value;
@@ -151,6 +145,3 @@ for (let i = 0; i < blockedSites.length;i++) {
       console.log(skip_list);
     });
 }
-
-
-blockSite()

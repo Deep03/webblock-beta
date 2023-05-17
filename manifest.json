@@ -22,5 +22,5 @@
     "webRequestBlocking",
     "<all_urls>"
   ],
-  "content_security_policy": "script-src 'self' 'unsafe-eval' 'my-bt2-nonce' 'my-bt1-nonce' 'my-script-nonce'; object-src 'self'"
+  "content_security_policy": "script-src 'self'; object-src 'self'"
 }
