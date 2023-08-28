@@ -1,17 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Web Block</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample HTML Document</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      color: #666;
+    }
+  </style>
 </head>
 <body>
-  <div class="add-site">
-    <input type="text" class="site-title" placeholder="Site name">
-    <button class="add-btn" id="add-btn-id" nonce="my-bt1-nonce">Add Site</button>
-    <button class="remove-btn" id="remove-btn" nonce="my-bt2-nonce">Remove Site</button>
-  </div>
-
 </body>
-<script src="background.js" nonce="my-script-nonce"></script>
 </html>
-
