@@ -1,26 +1,28 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Web Block",
   "version": "1.0",
   "description": "Block websites from being accessed",
   "background": {
-    "scripts": ["background.js"]
+    "service_worker": "background.js"
   },
   "icons": {
     "16": "icons/icons8-block-16.png",
     "48": "icons/icons8-block-48.png",
     "128": "icons/icons8-block-128.png"
   },
-  "browser_action": {
-    "default_icon": "icons/icons8-block-128.png",
-    "default_title": "WebBlock",
-    "default_popup": "index.html"
-  },
   "permissions": [
     "storage",
-    "webRequest",
-    "webRequestBlocking",
-    "<all_urls>"
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "declarativeNetRequestFeedback"
   ],
-  "content_security_policy": "script-src 'self'; object-src 'self'"
+  "host_permissions": [
+   "*://*/*"
+  ],
+  "action": {
+    "default_icon": "icons/icons8-block-128.png",
+    "default_title": "WebBlock-TEST",
+    "default_popup": "index.html"
+  }
 }
